@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>sensor</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="main">
+    <div class="details">
+        <h2><strong>Weather Conditions</strong></h2>
+        <p>Type the name of the city where you want to check the weather conditions.</p>
+      
+        <form [formGroup] ="temperatureForm" (ngSubmit)="search(temperatureForm.value)">
+            <ion-input placeholder="Enter City Name, Ex. Paris" formControlName="city"></ion-input>
+        
+            <button class="checkTemperature" type="submit">Submit</button>
+          </form>
+          <div class="temperature" *ngIf="temperature"> 
+              <!-- <div>   
+                  <img [src]="weather.current.condition.icon" />
+                  <p class="big">{{weather.current.temp_c}}°</p>
+                  <p><strong>{{weather.current.condition.text}}</strong></p> 
+              </div>
+              <div>
+                  
+                  <p>{{weather.location.name}}, <span>{{weather.location.country}}</span> </p>
+                  <p>{{weather.location.localtime}}</p>
+              </div>   -->
+              <p>{{temperature.location.name}}, <span>{{temperature.location.country}}</span> </p>
+              <p>{{temperature.location.localtime}}</p>
+          </div>
+    </div>
+</ion-content>
