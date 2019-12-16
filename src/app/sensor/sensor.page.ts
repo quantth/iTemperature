@@ -4,6 +4,8 @@ import {FormGroup, FormControl, Validators } from "@angular/forms";
 //ionic storage
 import { Storage } from "@ionic/storage";
 
+import { IMqttMessage, MqttModule, MqttService } from 'ngx-mqtt';
+
 
 @Component({
   selector: 'app-sensor',
@@ -12,48 +14,60 @@ import { Storage } from "@ionic/storage";
 })
 export class SensorPage implements OnInit {
 
-  constructor(private temperatureService: TemperatureService, private ionicStorage: Storage) {
-  
+  temperature: String;
+  constructor(private _mqttService: MqttService) {
+    this._mqttService.observe('testtopic/3').subscribe((message: IMqttMessage)=>{
+      this.temperature = message.payload.toString();
+      console.log(this.temperature);
+    });
   }
 
-  public temperatureForm = new FormGroup({
-    city: new FormControl('', Validators.required),
-  });
   
-  public temperature;
-  public city;
+  public unsafePublish(topic: string, message: string): void {
+    this._mqttService.unsafePublish(topic, message, {qos: 1, retain: true});
+  }
 
-  search(formData: FormData){
-    console.log(formData);
-    this.ionicStorage.set("city", formData["city"]);
+  // constructor(private temperatureService: TemperatureService, private ionicStorage: Storage) {
+  
+  // }
+
+  // public temperatureForm = new FormGroup({
+  //   city: new FormControl('', Validators.required),
+  // });
+  
+  // public temperature;
+  // public city;
+
+  // search(formData: FormData){
+  //   console.log(formData);
+  //   this.ionicStorage.set("city", formData["city"]);
     
-    this.temperatureService.getTemperatureFromApi(formData["city"]).subscribe( temperature => {
-      this.temperature = temperature;
-      console.log(temperature);
-    })
+  //   this.temperatureService.getTemperatureFromApi("city").subscribe( temperature => {
+  //     this.temperature = temperature;
+  //     console.log(temperature);
+  //   })
 
-  }
+  // }
 
+  // getTemperature(){
+  //     this.ionicStorage.get("city").then( city => {
+  //       if(city === null){
+  //         this.temperatureService.getTemperatureFromApi("paris").subscribe( temperature => {
+  //           this.temperature = temperature;
+  //           console.log(temperature);
+  //         })
+  //       }else{
+  //         this.temperatureService.getTemperatureFromApi(city).subscribe( temperature => {
+  //           this.temperature = temperature;
+  //           console.log(temperature);
+  //         });
+  //       }
 
-  getTemperature(){
-      this.ionicStorage.get("city").then( city => {
-        if(city === null){
-          this.temperatureService.getTemperatureFromApi("paris").subscribe( temperature => {
-            this.temperature = temperature;
-            console.log(temperature);
-          })
-        }else{
-          this.temperatureService.getTemperatureFromApi(city).subscribe( temperature => {
-            this.temperature = temperature;
-            console.log(temperature);
-          });
-        }
-
-      }).catch(err =>{
-        console.log(err);
-      })
+  //     }).catch(err =>{
+  //       console.log(err);
+  //     })
    
-  }
+  // }
 
   ngOnInit() {
   }

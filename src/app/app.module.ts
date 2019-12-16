@@ -13,6 +13,24 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from "@angular/common/http";
 import { IonicStorageModule } from '@ionic/storage';
 
+import {
+  IMqttMessage,
+  MqttModule,
+  IMqttServiceOptions,
+  MqttService
+} from 'ngx-mqtt';
+
+export const MQTT_SERVICE_OPTIONS = {
+  hostname: 'broker.mqttdashboard.com',
+  port: 8000,
+  path: '/mqtt'
+};
+
+export function mqttServiceFactory() {
+  return new MqttService(MQTT_SERVICE_OPTIONS);
+}
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -23,7 +41,8 @@ import { IonicStorageModule } from '@ionic/storage';
     HttpClientModule,
     IonicStorageModule.forRoot(),
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MqttModule.forRoot(MQTT_SERVICE_OPTIONS)
   ],
   providers: [
     StatusBar,
