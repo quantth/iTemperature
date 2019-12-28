@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar translucent>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/data"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{slug}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngFor="let d of dataSnap">
+    <ion-item [ngClass]="d.temperature >= 23 ? 'danger': 'safe'">
+        <ion-icon slot="start" name="{{d.icon}}" style="color: #000;"></ion-icon>
+        <ion-label>
+          <div>
+            <ion-icon slot="start" name="md-time"></ion-icon>{{d.time}}
+            <ion-icon slot="start" name="ios-water" style="color: aqua;"></ion-icon>{{d.humidity}}% 
+            <ion-icon slot="start" name="md-bonfire" style="color: brown;"></ion-icon>{{d.temperature}}°C 
+          </div>
+        </ion-label>
+    </ion-item>
+</ion-list>
+</ion-content>

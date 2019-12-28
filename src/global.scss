@@ -152,3 +152,10 @@ button:disabled {
         width: 90%;
     }
  }
+ .safe {
+    --ion-background-color: white;
+ }
+
+ .danger {
+    --ion-background-color: #FA8181;
+ }

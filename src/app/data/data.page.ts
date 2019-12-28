@@ -9,17 +9,19 @@ import * as firebase from 'firebase';
   styleUrls: ['./data.page.scss'],
 })
 export class DataPage implements OnInit {
-  result: any;
+  uids = [];
   constructor(public db: AngularFireDatabase) { 
-    // var semesterRef = firebase.database().ref('28-12-2019');
-    // semesterRef.on('child_added', function(courseSnapshot) {
-    //   console.log(courseSnapshot.val());
-    // });
-
     firebase.database().ref().on('value', (snap) => {
-       this.result = snap.val();
-      console.log(this.result);
-  });
+      let result = snap.val();
+      for(let k in result) {
+        this.uids.push(k);
+      }
+      // console.log(result);
+    });
+  }
+
+  public showData(params: any): void {
+    console.log(params);
   }
 
   ngOnInit() {
