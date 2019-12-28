@@ -28,6 +28,16 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'data',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../data/data.module').then(m => m.DataPageModule)
+          }
+        ]
+      },
+      {
         path: '',
         redirectTo: '/tabs/home',
         pathMatch: 'full'

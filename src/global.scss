@@ -81,6 +81,7 @@ $custom-color: #7bcdfd;
 }
 
 .temperature > div {
+    display: block;
     text-align: center;
     
 }
@@ -120,7 +121,7 @@ ion-input {
    
 }
 .big {
-    font-size: 4rem;
+    font-size: 3rem;
     padding: 0px;
     margin: 0px;
 }

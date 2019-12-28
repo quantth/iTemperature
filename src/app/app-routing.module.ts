@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'sensor',
     loadChildren: () => import('./sensor/sensor.module').then( m => m.SensorPageModule)
+  },
+  {
+    path: 'data',
+    loadChildren: () => import('./data/data.module').then( m => m.DataPageModule)
   }
 ];
 @NgModule({

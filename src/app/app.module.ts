@@ -12,7 +12,11 @@ import { AppComponent } from './app.component';
 
 import { HttpClientModule } from "@angular/common/http";
 import { IonicStorageModule } from '@ionic/storage';
-
+import firebaseConfig from './firebase';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule  } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import {
   IMqttMessage,
   MqttModule,
@@ -42,7 +46,11 @@ export function mqttServiceFactory() {
     IonicStorageModule.forRoot(),
     ReactiveFormsModule,
     FormsModule,
-    MqttModule.forRoot(MQTT_SERVICE_OPTIONS)
+    MqttModule.forRoot(MQTT_SERVICE_OPTIONS),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
   providers: [
     StatusBar,

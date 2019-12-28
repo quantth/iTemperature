@@ -7,24 +7,14 @@
 <ion-content class="main">
     <div class="details">
         <h2><strong>Sensor Conditions</strong></h2>
-        <p>Type the name of the city where you want to check the weather conditions.</p>
-        <p class="big">{{temperature}}°C</p>
-        <!-- <form [formGroup] ="temperatureForm" (ngSubmit)="search(temperatureForm.value)">
-            <ion-input placeholder="Enter City Name, Ex. Paris" formControlName="city"></ion-input>
-        
-            <button class="checkTemperature" type="submit">Submit</button>
-          </form>
-          <div class="temperature" *ngIf="temperature"> 
-              <div>   
-                  <img [src]="temperature.current.weather_icons" />
-                  <p class="big">{{temperature.current.temperature}}°</p>
-                  <p><strong>{{temperature.current.weather_descriptions[0]}}</strong></p> 
-              </div>
-              <div>
-                <p>{{temperature.location.name}}, <span>{{temperature.location.country}}</span> </p>
-                <p>{{temperature.location.localtime}}</p>
-              </div>  
-              
-          </div> -->
+        <p>This is realtime temperature and humidity is measured at {{date | date: 'dd/MM/yyyy'}}</p>
+        <p class="big">Tem: {{temperature}}°C</p>
+        <p class="big">Hum: {{humidity}}%</p>
+        <div class="temperature" *ngIf="temperature >= 22"> 
+          <div id="blik">   
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Achtung.svg/180px-Achtung.svg.png" />
+            <p style="color: red;">Ambient temperature too high!</p>
+          </div>
+        </div>
     </div>
 </ion-content>
