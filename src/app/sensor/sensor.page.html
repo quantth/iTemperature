@@ -10,7 +10,8 @@
         <p>This is realtime temperature and humidity is measured at {{date | date: 'dd/MM/yyyy'}}</p>
         <p class="big">Tem: {{temperature}}°C</p>
         <p class="big">Hum: {{humidity}}%</p>
-        <div class="temperature" *ngIf="temperature >= 22"> 
+        <div class="temperature" *ngIf="temperature >= 23">
+          <audio name="warning" src="../assets/music/warning.mp3" autoplay loop="false"></audio>
           <div id="blik">   
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Achtung.svg/180px-Achtung.svg.png" />
             <p style="color: red;">Ambient temperature too high!</p>

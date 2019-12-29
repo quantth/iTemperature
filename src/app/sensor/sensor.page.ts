@@ -16,8 +16,8 @@ import { take, map } from 'rxjs/operators';
 })
 export class SensorPage implements OnInit {
 
-  temperature: number;
-  humidity: number;
+  temperature: number = 23;
+  humidity: number = 60;
   array: string[];
   date: Date;
   funny: number;
