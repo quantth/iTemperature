@@ -1,7 +1,7 @@
 <ion-header>
-  <ion-toolbar translucent>
+  <ion-toolbar translucent text-center>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/data"></ion-back-button>
+      <ion-back-button defaultHref="/tabs/data"></ion-back-button>
     </ion-buttons>
     <ion-title>{{slug}}</ion-title>
   </ion-toolbar>
@@ -9,12 +9,12 @@
 
 <ion-content fullscreen>
   <ion-list *ngFor="let d of dataSnap; let i = index">
-    <ion-item-sliding id="item100">
+    <ion-item-sliding>
       <ion-item [ngClass]="d.temperature >= 23 ? 'danger': 'safe'">
           <ion-icon slot="start" name="{{d.icon}}" style="color: #000;"></ion-icon>
           <ion-label>
               <h2><ion-icon slot="start" name="ios-water" style="color: aqua;"></ion-icon>{{d.humidity}}% </h2>
-              <h2><ion-icon slot="start" name="md-bonfire" style="color: brown;"></ion-icon>{{d.temperature}}°C </h2>
+              <h2><ion-icon slot="start" name="ios-thermometer" style="color: brown;"></ion-icon>{{d.temperature}}°C </h2>
           </ion-label>
           <ion-note slot="end">
             <ion-icon name="md-time"></ion-icon>{{d.time}}

@@ -16,13 +16,13 @@ import { take, map } from 'rxjs/operators';
 })
 export class SensorPage implements OnInit {
 
-  temperature: number = 23;
-  humidity: number = 60;
+  temperature: number;
+  humidity: number;
   array: string[];
   date: Date;
   funny: number;
   constructor(private _mqttService: MqttService) {
-    this._mqttService.observe('testtopic/3').subscribe((message: IMqttMessage)=>{
+    this._mqttService.observe('topic/team17').subscribe((message: IMqttMessage)=>{
       this.date = new Date();
       this.array = message.payload.toString().trimLeft().split(" ");
       this.temperature = parseInt(this.array[0]);
