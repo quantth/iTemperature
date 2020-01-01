@@ -11,7 +11,7 @@ import { LoadingService } from '../loading.sevice';
   styleUrls: ['./data-detail.page.scss'],
 })
 export class DataDetailPage implements OnInit {
-  private slug: string;
+  public slug: string;
   public dataSnap = [];
 
   constructor(private route: ActivatedRoute, public db: AngularFireDatabase, public loadingService: LoadingService) {
