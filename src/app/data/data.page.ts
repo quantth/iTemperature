@@ -17,6 +17,9 @@ export class DataPage implements OnInit {
     firebase.database().ref().on('value', (snap) => {
       let result = snap.val();
       for(let k in result) {
+        if(k === "1-1-1970") continue;
+        if(k === "humidity") continue;
+        if(k === "temperature") continue;
         if(this.uids.includes(k)) continue;
         this.uids.push(k);
       }
